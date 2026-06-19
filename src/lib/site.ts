@@ -35,7 +35,6 @@ export type Service = {
     | "boxes"
     | "feather"
     | "steam";
-  featured?: boolean;
 };
 
 export const services: Service[] = [
@@ -44,7 +43,6 @@ export const services: Service[] = [
     blurb:
       "A meticulous, top-to-bottom reset that reaches the corners, crevices, and surfaces everyday cleaning leaves behind.",
     icon: "sparkle",
-    featured: true,
   },
   {
     title: "Weekly, Bi-Weekly & Monthly",
