@@ -1,0 +1,9 @@
+{
+  "name": "Spark & Shine Cleaning Services",
+  "short_name": "Spark & Shine",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d1f2d",
+  "theme_color": "#0d1f2d",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

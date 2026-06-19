@@ -1,0 +1,239 @@
+@import "tailwindcss";
+
+/* ----------------------------------------------------------------------------
+   Spark & Shine — luxury / clean theme
+   Palette: ivory base · deep midnight navy · champagne gold · soft aqua
+---------------------------------------------------------------------------- */
+
+:root {
+  --ivory: #f8f5ef;
+  --ivory-soft: #f2ede3;
+  --cream: #fffdf8;
+  --navy: #0d1f2d;
+  --navy-soft: #14293a;
+  --ink: #1a2733;
+  --gold: #c8a24a;
+  --gold-light: #e6c878;
+  --gold-deep: #a87f2e;
+  --aqua: #6fb3b8;
+  --aqua-deep: #3f8a90;
+  --muted: #5b6b76;
+  --line: rgba(13, 31, 45, 0.1);
+}
+
+@theme inline {
+  --color-ivory: var(--ivory);
+  --color-ivory-soft: var(--ivory-soft);
+  --color-cream: var(--cream);
+  --color-navy: var(--navy);
+  --color-navy-soft: var(--navy-soft);
+  --color-ink: var(--ink);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-deep: var(--gold-deep);
+  --color-aqua: var(--aqua);
+  --color-aqua-deep: var(--aqua-deep);
+  --color-muted: var(--muted);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-script: var(--font-script), cursive;
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+/* Gold text gradient */
+.text-gold-gradient {
+  background: linear-gradient(120deg, var(--gold-deep), var(--gold-light) 45%, var(--gold) 75%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Thin gold rule / divider */
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold) 20%,
+    var(--gold-light) 50%,
+    var(--gold) 80%,
+    transparent
+  );
+}
+
+/* Eyebrow label */
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Subtle elevated card */
+.card-luxe {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  box-shadow:
+    0 1px 2px rgba(13, 31, 45, 0.03),
+    0 12px 40px -28px rgba(13, 31, 45, 0.45);
+  transition:
+    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.45s ease;
+}
+.card-luxe:hover {
+  transform: translateY(-6px);
+  border-color: rgba(200, 162, 74, 0.5);
+  box-shadow:
+    0 1px 2px rgba(13, 31, 45, 0.04),
+    0 26px 60px -32px rgba(13, 31, 45, 0.55);
+}
+
+/* Buttons — kept in the components layer so Tailwind utilities
+   (e.g. `hidden`) always override the component's `display`. */
+@layer components {
+  .btn-gold {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: linear-gradient(120deg, var(--gold-deep), var(--gold) 55%, var(--gold-light));
+    color: var(--navy);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    border-radius: 999px;
+    padding: 0.95rem 1.9rem;
+    box-shadow: 0 14px 34px -14px rgba(200, 162, 74, 0.75);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  }
+  .btn-gold:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow: 0 18px 40px -12px rgba(200, 162, 74, 0.9);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    border: 1px solid rgba(248, 245, 239, 0.35);
+    color: var(--ivory);
+    border-radius: 999px;
+    padding: 0.95rem 1.7rem;
+    font-weight: 500;
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  }
+  .btn-ghost:hover {
+    background: rgba(248, 245, 239, 0.08);
+    border-color: rgba(230, 200, 120, 0.7);
+    transform: translateY(-2px);
+  }
+}
+
+/* Scroll-reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Floating sparkle drift */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-14px) rotate(8deg);
+    opacity: 1;
+  }
+}
+.animate-drift {
+  animation: drift 6s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+.animate-twinkle {
+  animation: twinkle 3.2s ease-in-out infinite;
+}
+
+/* Slow sheen sweep for the hero wordmark */
+@keyframes sheen {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+.animate-sheen {
+  background: linear-gradient(
+    100deg,
+    var(--gold-deep) 0%,
+    var(--gold) 30%,
+    #fff7e2 50%,
+    var(--gold) 70%,
+    var(--gold-deep) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: sheen 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-drift,
+  .animate-twinkle,
+  .animate-sheen {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
