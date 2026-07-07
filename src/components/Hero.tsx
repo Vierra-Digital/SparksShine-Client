@@ -1,32 +1,38 @@
 import { site } from "@/lib/site";
 import { ArrowIcon, PhoneIcon, Sparkle } from "./icons";
 
+// Sparkles are positioned in the margins so they frame the content instead of
+// crowding it. The tighter ones are hidden on small screens to keep mobile calm.
 const sparkles = [
-  { top: "14%", left: "12%", size: 18, delay: "0s", dur: "5s" },
-  { top: "22%", left: "82%", size: 26, delay: "1.1s", dur: "6.5s" },
-  { top: "62%", left: "8%", size: 22, delay: "0.6s", dur: "7s" },
-  { top: "78%", left: "88%", size: 16, delay: "1.6s", dur: "5.5s" },
-  { top: "44%", left: "92%", size: 12, delay: "2s", dur: "6s" },
-  { top: "8%", left: "52%", size: 12, delay: "0.3s", dur: "7.5s" },
-  { top: "86%", left: "40%", size: 14, delay: "1.3s", dur: "6.2s" },
+  { top: "16%", left: "9%", size: 22, dur: "6.5s", delay: "0s", mobile: true },
+  { top: "70%", left: "12%", size: 16, dur: "7s", delay: "1.2s", mobile: true },
+  { top: "24%", left: "88%", size: 26, dur: "6s", delay: "0.6s", mobile: true },
+  { top: "76%", left: "90%", size: 18, dur: "7.5s", delay: "1.6s", mobile: false },
+  { top: "44%", left: "94%", size: 12, dur: "5.5s", delay: "2s", mobile: false },
+  { top: "10%", left: "50%", size: 13, dur: "6.8s", delay: "0.3s", mobile: false },
+  { top: "88%", left: "42%", size: 14, dur: "6.2s", delay: "1.4s", mobile: false },
 ];
 
 export default function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden bg-navy pt-32 pb-24 sm:pt-40 sm:pb-32"
+      className="relative flex min-h-[100svh] items-center overflow-hidden bg-navy"
     >
-      {/* Ambient glows — kept clear of the bottom edge for a clean transition */}
+      {/* Ambient light + subtle dot texture that fades toward the edges */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-24 left-1/4 h-96 w-96 rounded-full bg-gold/10 blur-[120px]" />
-        <div className="absolute top-1/3 right-1/4 h-96 w-96 rounded-full bg-aqua/10 blur-[120px]" />
+        <div className="absolute -top-40 left-1/2 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-gold/[0.12] blur-[150px]" />
+        <div className="absolute -bottom-32 right-[-6rem] h-[28rem] w-[28rem] rounded-full bg-aqua/[0.07] blur-[140px]" />
         <div
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.05]"
           style={{
             backgroundImage:
               "radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)",
-            backgroundSize: "40px 40px",
+            backgroundSize: "38px 38px",
+            maskImage:
+              "radial-gradient(ellipse 65% 55% at 50% 45%, #000 35%, transparent 80%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 65% 55% at 50% 45%, #000 35%, transparent 80%)",
           }}
         />
       </div>
@@ -35,7 +41,9 @@ export default function Hero() {
       {sparkles.map((s, i) => (
         <Sparkle
           key={i}
-          className="animate-drift pointer-events-none absolute text-gold-light/60"
+          className={`animate-sparkle pointer-events-none absolute text-gold-light/60 ${
+            s.mobile ? "" : "hidden sm:block"
+          }`}
           style={{
             top: s.top,
             left: s.left,
@@ -47,30 +55,30 @@ export default function Hero() {
         />
       ))}
 
-      <div className="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
-        <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/5 px-4 py-1.5 text-ivory/80">
-          <Sparkle className="h-3.5 w-3.5 text-gold-light animate-twinkle" />
-          <span className="eyebrow text-[0.68rem] text-gold-light">
+      <div className="relative mx-auto w-full max-w-3xl px-6 py-28 text-center sm:px-8 sm:py-32">
+        <span className="inline-flex items-center gap-2.5 text-gold-light">
+          <Sparkle className="h-3.5 w-3.5 animate-twinkle" />
+          <span className="eyebrow text-[0.65rem] sm:text-[0.7rem]">
             {site.pitch}
           </span>
         </span>
 
-        <h1 className="mt-8 font-display text-5xl font-medium leading-[0.95] tracking-tight text-ivory sm:text-7xl">
-          <span className="block font-script text-6xl font-bold sm:text-8xl">
-            <span className="animate-sheen">Spark &amp; Shine</span>
+        <h1 className="mt-7 text-ivory sm:mt-8">
+          <span className="block animate-sheen font-script text-[3.35rem] font-bold leading-[0.9] sm:text-8xl">
+            Spark &amp; Shine
           </span>
-          <span className="mt-3 block text-2xl font-normal italic text-ivory/85 sm:text-4xl">
+          <span className="mt-3 block font-display text-xl font-normal italic tracking-tight text-ivory/85 sm:mt-4 sm:text-4xl">
             Cleaning That Feels Like Luxury
           </span>
         </h1>
 
-        <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-ivory/70">
+        <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-ivory/65 sm:mt-7 sm:text-lg">
           From a single deep clean to weekly white-glove care, we bring
           meticulous detail and a friendly touch to every home, office, and
-          salon. {site.tagline}
+          salon.
         </p>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:mt-11 sm:flex-row">
           <a href="#contact" className="btn-gold w-full justify-center sm:w-auto">
             Get a Free Estimate
             <ArrowIcon className="h-4 w-4" />
@@ -84,6 +92,26 @@ export default function Hero() {
           </a>
         </div>
       </div>
+
+      {/* Scroll cue — desktop only, to keep the mobile hero uncluttered */}
+      <a
+        href="#services"
+        aria-label="Scroll to services"
+        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 text-ivory/40 transition-colors hover:text-gold-light sm:block"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={1.5}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="h-6 w-6 animate-bob"
+          aria-hidden
+        >
+          <path d="M12 5v14M6 13l6 6 6-6" />
+        </svg>
+      </a>
     </section>
   );
 }

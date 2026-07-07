@@ -26,11 +26,10 @@ export default function Contact() {
       className="relative overflow-hidden bg-navy py-24 sm:py-32"
     >
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/3 top-0 h-96 w-96 rounded-full bg-gold/10 blur-[130px]" />
-        <div className="absolute bottom-0 right-1/4 h-80 w-80 rounded-full bg-aqua/10 blur-[120px]" />
+        <div className="absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-gold/[0.09] blur-[140px]" />
       </div>
 
-      <div className="relative mx-auto max-w-3xl px-5 text-center sm:px-8">
+      <div className="relative mx-auto max-w-3xl px-6 text-center sm:px-8">
         <Reveal>
           <span className="inline-flex items-center gap-3 eyebrow text-gold-light">
             <span className="h-px w-7 bg-gold" />
@@ -47,26 +46,23 @@ export default function Contact() {
           </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-5 text-left sm:grid-cols-2">
+        <div className="mt-12 grid gap-x-10 gap-y-10 text-left sm:grid-cols-2">
           {contactCards.map(({ label, value, href, Icon, note }, i) => (
             <Reveal key={label} delay={i * 100}>
-              <a
-                href={href}
-                className="group flex h-full flex-col gap-4 rounded-2xl border border-ivory/10 bg-ivory/[0.04] p-7 transition-colors hover:border-gold/40 hover:bg-ivory/[0.07]"
-              >
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-gold-light to-gold-deep text-navy transition-transform duration-300 group-hover:scale-110">
-                  <Icon className="h-5 w-5" />
+              <a href={href} className="group flex gap-4">
+                <span className="mt-0.5 shrink-0 text-gold-light">
+                  <Icon className="h-6 w-6" />
                 </span>
                 <span>
-                  <span className="block text-xs uppercase tracking-[0.18em] text-ivory/55">
+                  <span className="block text-xs uppercase tracking-[0.18em] text-ivory/50">
                     {label}
                   </span>
-                  <span className="mt-1 block font-display text-xl text-ivory">
+                  <span className="mt-1 block font-display text-xl text-ivory transition-colors group-hover:text-gold-light">
                     {value}
                   </span>
-                </span>
-                <span className="text-sm leading-relaxed text-ivory/60">
-                  {note}
+                  <span className="mt-2 block text-sm leading-relaxed text-ivory/55">
+                    {note}
+                  </span>
                 </span>
               </a>
             </Reveal>
@@ -87,14 +83,12 @@ export default function Contact() {
         </Reveal>
 
         <Reveal delay={220}>
-          <div className="mx-auto mt-10 inline-flex items-center gap-3 rounded-full border border-gold/25 bg-gold/[0.07] px-5 py-3">
+          <p className="mt-10 inline-flex items-center gap-2.5 text-sm text-ivory/70">
             <Sparkle className="h-4 w-4 shrink-0 text-gold-light animate-twinkle" />
-            <p className="text-sm text-ivory/80">
-              Estimates are always{" "}
-              <strong className="text-gold-light">free</strong>, with no
-              obligation.
-            </p>
-          </div>
+            Estimates are always{" "}
+            <strong className="font-semibold text-gold-light">free</strong>, with
+            no obligation.
+          </p>
         </Reveal>
       </div>
     </section>

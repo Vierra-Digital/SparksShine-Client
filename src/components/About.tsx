@@ -6,20 +6,12 @@ import SectionHeading from "./SectionHeading";
 export default function About() {
   return (
     <section id="about" className="relative bg-ivory py-24 sm:py-32">
-      <div className="mx-auto grid max-w-7xl gap-14 px-5 sm:px-8 lg:grid-cols-2 lg:items-center lg:gap-20">
+      <div className="mx-auto grid max-w-7xl gap-14 px-6 sm:px-8 lg:grid-cols-2 lg:items-center lg:gap-20">
         {/* Portrait / signature card */}
         <Reveal className="order-2 lg:order-1">
           <div className="relative mx-auto max-w-md">
-            <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-gold/20 via-transparent to-aqua/15 blur-xl" />
-            <div className="relative overflow-hidden rounded-[2rem] border border-line bg-navy p-10 text-center shadow-[0_40px_90px_-50px_rgba(13,31,45,0.8)]">
-              <div className="pointer-events-none absolute inset-0 opacity-[0.05]"
-                style={{
-                  backgroundImage:
-                    "radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)",
-                  backgroundSize: "30px 30px",
-                }}
-              />
-              <div className="relative">
+            <div className="overflow-hidden rounded-[1.75rem] bg-navy p-10 text-center shadow-[0_40px_90px_-55px_rgba(13,31,45,0.7)]">
+              <div>
                 <div className="mx-auto grid h-24 w-24 place-items-center rounded-full bg-gradient-to-br from-gold-light to-gold-deep text-navy shadow-[0_16px_40px_-16px_rgba(200,162,74,0.9)]">
                   <span className="font-display text-3xl font-bold">DM</span>
                 </div>

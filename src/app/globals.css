@@ -91,26 +91,6 @@ body {
   font-weight: 600;
 }
 
-/* Subtle elevated card */
-.card-luxe {
-  background: var(--cream);
-  border: 1px solid var(--line);
-  box-shadow:
-    0 1px 2px rgba(13, 31, 45, 0.03),
-    0 12px 40px -28px rgba(13, 31, 45, 0.45);
-  transition:
-    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
-    border-color 0.45s ease;
-}
-.card-luxe:hover {
-  transform: translateY(-6px);
-  border-color: rgba(200, 162, 74, 0.5);
-  box-shadow:
-    0 1px 2px rgba(13, 31, 45, 0.04),
-    0 26px 60px -32px rgba(13, 31, 45, 0.55);
-}
-
 /* Buttons — kept in the components layer so Tailwind utilities
    (e.g. `hidden`) always override the component's `display`. */
 @layer components {
@@ -166,20 +146,36 @@ body {
   transform: translateY(0);
 }
 
-/* Floating sparkle drift */
-@keyframes drift {
+/* Floating sparkles — a gentle drift + twinkle in one */
+@keyframes sparkleFloat {
   0%,
   100% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0.5;
+    transform: translateY(0) scale(0.9);
+    opacity: 0.35;
   }
   50% {
-    transform: translateY(-14px) rotate(8deg);
+    transform: translateY(-10px) scale(1.1);
+    opacity: 0.9;
+  }
+}
+.animate-sparkle {
+  animation: sparkleFloat 6s ease-in-out infinite;
+}
+
+/* Gentle bob for the scroll cue */
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(5px);
     opacity: 1;
   }
 }
-.animate-drift {
-  animation: drift 6s ease-in-out infinite;
+.animate-bob {
+  animation: bob 2.4s ease-in-out infinite;
 }
 
 @keyframes twinkle {
@@ -228,10 +224,12 @@ body {
     transform: none;
     transition: none;
   }
-  .animate-drift,
+  .animate-bob,
   .animate-twinkle,
-  .animate-sheen {
+  .animate-sheen,
+  .animate-sparkle {
     animation: none;
+    opacity: 0.7;
   }
   html {
     scroll-behavior: auto;

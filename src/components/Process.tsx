@@ -8,7 +8,7 @@ export default function Process() {
       id="process"
       className="relative overflow-hidden bg-ivory-soft py-24 sm:py-32"
     >
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8">
         <SectionHeading
           eyebrow="How It Works"
           title="Sparkling Clean In Three Easy Steps"
